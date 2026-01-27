@@ -10,7 +10,7 @@ body{
     
     font-family: Georgia, serif;
     font-weight: normal;
-    line-height: 1.5;
+    line-height: 2;
 }
 
 .hero{
@@ -52,24 +52,21 @@ h2{
     justify-content: center;
     text-align: center;
     height: 40%;
-    width: 80%;
     padding:2rem;
 }
 
 .first{
-
+    margin: 0 auto;
     background-color: #7c4311;
     color: #E5D9B6;
     padding: 2rem;
-    width: 80%
-
 }
 
 .second{
+    margin: 0 auto;
     padding: 2rem;
     background-color: #E5D9B6;
     color: #628141;
-    width: 80%
 }
 
 /*breakpoint 1*/
@@ -101,6 +98,5 @@ h2{
     }
     .info{
         width: 80%;
-        padding: 5rem;
     }
 }
