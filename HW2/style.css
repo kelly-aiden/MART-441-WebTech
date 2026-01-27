@@ -1,0 +1,106 @@
+body{
+    margin: 0;
+    padding: 0;
+    
+    background-image: url("Images/creek2.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+    font-family: Georgia, serif;
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+.hero{
+    height: 100vh;
+    background-image: url("Images/creek1.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.title{
+    background: #40513be4;
+    color: #E5D9B6;
+    padding: 2rem;
+    box-shadow: inset 0 0 0 0.5rem #E5D9B6;
+    width: 100vh;
+    height: 60vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    font-size: 3rem;
+}
+
+h2{
+    font-size: 2rem;
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 40%;
+    width: 80%;
+    padding:2rem;
+}
+
+.first{
+
+    background-color: #7c4311;
+    color: #E5D9B6;
+    padding: 2rem;
+    width: 80%
+
+}
+
+.second{
+    padding: 2rem;
+    background-color: #E5D9B6;
+    color: #628141;
+    width: 80%
+}
+
+/*breakpoint 1*/
+@media (min-width: 600px) {
+    .title {
+        padding: 3rem;
+    }
+    .info {
+        width: 75%;
+    }
+    h1{
+        font-size: 3rem;
+    }
+    h2{
+        font-size: 2rem;
+    }
+}
+
+/*breakpoint 2*/
+@media (min-width: 900px) {
+    h1{
+        font-size: 5rem;
+    }
+    h2{
+        font-size: 3rem;
+    }
+    p{
+        font-size: 1.5rem;
+    }
+    .info{
+        width: 80%;
+        padding: 5rem;
+    }
+}
