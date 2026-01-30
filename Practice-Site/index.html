@@ -1,49 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My First Web Page</title>
+    <title>Mini Web Page</title>
     <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #100021;
-      margin: 20px;
-      color: #a9a0b8;
-      text-align: center;
-    }
+      body {
+       font-family: sans-serif;
+       background-color: #f4f4f4;
+      }
 
-    h1 {
-      color: #bfa3f7;
-      font-size: 100px;
-    }
-    </style>
+       button {
+       padding: 10px;
+       font-size: 16px;
+      }
+</style>
   </head>
   <body>
+    <h1>Hello Web</h1>
+    <p>This page has structure.</p>
+    <button>Click Me</button>
 
-    <h1>
-        Welcome to My Page
-    </h1>
+    <script>
+      console.log("Page loaded");
 
-    <h2>
-        1st activity practice
-    </h2>
-
-    <p>
-        I do not miss doing this (coding) but it is like riding a bike (I started college as a CS major actually)
-    </p>
-    <br>
-    <img src="images/sad-face-emoji.jpg" alt="sad face">
-    <br>
-    <h3>
-        Reasons I don't like coding
-    </h3>
-    <ul>
-        <li>It's incredibly tedious</li>
-        <li>It takes forever</li>
-        <li>There is such a disconnect between what I want to do and what syntax will allow me to do, it feels stiffling</li>
-    </ul>
-    <br>
-    <p>
-        Here's a link to <a href="https://www.YouTube.com">YouTube</a>
-    </p>
+      const button = document.querySelector("button");
+      button.addEventListener("click", function () {
+        console.log("Button was clicked!");
+      });
+    </script>
   </body>
 </html>
