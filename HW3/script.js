@@ -1,14 +1,22 @@
-/* I wanted to give my old CS skills a whirl so I used indexing arrays for a couple of these sets of three */
+/* I wanted to give my old CS skills a whirl so I used indexing arrays for a couple of these sets of three 
+I created these arrays containing my answers to the first two questions
+*/
 let websites = ["Dropout.tv", "Depop.com", "dcuniverseinfinite.com"];
 let games = ["Cocoon", "Horizon Zero Dawn", "Spikeball"];
 
+/* indexing through the websites array to print out each item in the array 
+using a for loop that iterates a number of times equal to the length of the array
+*/
 console.log("My favorite websites are:");
 for (let i = 0; i < websites.length; i++){
     console.log(websites[i]);
 }
 console.log("");
-/* I use console.log("") to create a line break in the console log */
+// I use console.log("") to create a line break in the console log */
 
+/* indexing through the games array to print out each item in the array 
+using a for loop that iterates 3 times
+*/
 console.log("My favorite games are:")
 for (let i = 0; i < 3; i++){
     console.log(games[i]);
@@ -20,5 +28,7 @@ console.log("Jean Michael Basquiat is my favorite painter of all time. Basquiat 
 console.log("Stevie Wonder, what more do I have to say. He helped pioneer electronic instruments in music, broke so many racial barriers in the music industry, spoke to poverty, peace, and racism in his music, influenced more people than I can comprehend, and just made some of the best music ever.");
 console.log("");
 
+// create the answer variable and assign to the user's response to the prompt
 let answer = prompt("Who is your favorite painter?");
+//I was taught to concatenate in CS so that's how I incorporate variables in print() or console.log()
 console.log("Wow! " + answer + " is such a great choice!");
