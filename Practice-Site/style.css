@@ -1,0 +1,56 @@
+body {
+  background: linear-gradient(to bottom, #a8d5ba, #3a5a40);
+  font-family: 'Georgia', serif;
+  color: #2e3d27;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 600px;
+  background-color: #e6f0e6;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 0 15px #1b2a14;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Papyrus', fantasy;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #2f5d27;
+  text-shadow: 1px 1px 2px #a0c68c;
+}
+
+#scene-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 10px #4a7a3f;
+}
+
+#story-text {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  min-height: 100px;
+}
+
+#choices button {
+  background-color: #4a7a3f;
+  color: #e6f0e6;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#choices button:hover {
+  background-color: #6aa84f;
+}
