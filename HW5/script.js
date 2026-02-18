@@ -1,99 +1,76 @@
-var question = 0;
-var firstChoice = "";
-function choose(choice) {
-    question += 1;
-    if (question == 1){
-        if (choice == 1){
-            document.getElementById("narration").innerHTML = "You and your party dart behind some rocks, hidden. The dragon begins sniffing around looking for its prey...";
-            document.getElementById("left").innerHTML = "Run away";
-            document.getElementById("right").innerHTML = "Sneak attack the Dragon";
-            firstChoice = "hide"
-        }
-        else if (choice == 2){
-            document.getElementById("narration").innerHTML = "You and your party square up and prepare for battle. The dragon snarls and furls,beginning to charge up a powerful beam attack...";
-            document.getElementById("left").innerHTML = "Shield yourself and your allies";
-            document.getElementById("right").innerHTML = "Attack it before it can attack you";
-            firstChoice = "fight"
-        } 
-    }
-
-    else if (question == 3){
-        if (firstChoice == "hide"){
-            if (choice == 1){
-                document.getElementById("narration").innerHTML = "You raise your blade to pierce through the eye of the titan, but you see a pupil as large as you whips around training on you. A massive maw opens and your vision is filled with the inside of a dragon's mouth...";
-                document.getElementById("left").innerHTML = "RESTART";
-                document.getElementById("right").innerHTML = "END GAME";
-                document.getElementById("prompt").innerHTML = "YOU HAVE DIED" + "<br>GAME OVER";
-            }
-            else if (choice == 2){
-                document.getElementById("narration").innerHTML = "You raise your blade and charge, the dragon's massive eye turns to spot you, but it is too late for it. plunge the sword into it's neck, delivering a powerful blow directly in its weak spot. The dragon screeches in pain before it's head collapses to the ground... DEAD";
-                document.getElementById("left").innerHTML = "RESTART";
-                document.getElementById("right").innerHTML = "END GAME";
-                document.getElementById("prompt").innerHTML = "YOU HAVE SLAYED THE BEAST" + "<br>CONGRADULATIONS!";
-            }
-        }
-        if (firstChoice == "fight"){
-            if (choice == 1){
-                document.getElementById("narration").innerHTML = "The dragon stands there spent after its powerful attack. You raise your blade and charge, leaping to pierce through the eye of the titan, but you see a pupil as large as you whips around and training on you. A massive maw opens and your vision is filled with the inside of a dragon's mouth...";
-                document.getElementById("left").innerHTML = "RESTART";
-                document.getElementById("right").innerHTML = "END GAME";
-                document.getElementById("prompt").innerHTML = "YOU HAVE DIED" + "<br>GAME OVER";
-            }
-            else if (choice == 2){
-                document.getElementById("narration").innerHTML = "The dragon stands there spent after its powerful attack. You raise your blade and charge, leaping up and plunging the sword into it's neck, delivering a powerful blow directly in its weakest point. The dragon screeches in pain before it's head collapses to the ground... DEAD";
-                document.getElementById("left").innerHTML = "RESTART";
-                document.getElementById("right").innerHTML = "END GAME";
-                document.getElementById("prompt").innerHTML = "YOU HAVE SLAYED THE BEAST" + "<br>CONGRADULATIONS!";
-            }
+options = ["YES","RED","GREEN","SILVER","YELLOW","PURPLE","NO"];
+function getCase() {
+    var choice = document.getElementById("choice").value;
+    for (let i = 0; i < options.length; i++){
+        if (choice == options[i]){
+            return i;
         }
     }
+    return 7
+}
 
-    else if (question == 2){
-        if (firstChoice == "hide"){
-            if (choice == 1){
-                document.getElementById("narration").innerHTML = "As you and your allies attempt to flee, the dragon spots you, unleashing a powerful ice beam attack! The beam carves into the snowy cliffs, eliminating you and your party...";
-                document.getElementById("left").innerHTML = "RESTART";
-                document.getElementById("right").innerHTML = "END GAME";
-                document.getElementById("prompt").innerHTML = "YOU HAVE DIED" + "<br>GAME OVER";
-                question = 3;
-            }
-            else if (choice == 2){
-                document.getElementById("narration").innerHTML = "You wait for the perfect opportunity to strike. You hear the dragon's head approach you behind your rock. Its breathing echoing through your ears. Right next to appears the head of the beast...";
-                document.getElementById("left").innerHTML = "Go for the eye";
-                document.getElementById("right").innerHTML = "Go for the neck";
-            }
-        }
-        if (firstChoice == "fight"){
-            if (choice == 1){
-                document.getElementById("narration").innerHTML = "You raise your shield, its ancient runes wrapping you and your allies in an arcane shield. The beam strikes the shield, and you plant your feet into the snow, standing your ground. The beam dissapates. As you observe the beast, you notice its eyes and throat glow and appear to weaken...";
-                document.getElementById("left").innerHTML = "Go for the eye";
-                document.getElementById("right").innerHTML = "Go for the neck";
-            }
-            else if (choice == 2){
-                document.getElementById("narration").innerHTML = "You muster the courage and bravery to charge the fearsome beast, it was ready. The dragon bats you away with a swift flap of its wing, before unleashing its devestating beam attack, eliminating you and your party";
-                document.getElementById("left").innerHTML = "RESTART";
-                document.getElementById("right").innerHTML = "END GAME";
-                document.getElementById("prompt").innerHTML = "YOU HAVE DIED" + "<br>GAME OVER";
-                question = 3;
-            }
-        }
-    }
-
-    else if (question == 4){
-        if (choice == 1){
-            document.getElementById("narration").innerHTML = "On your travels through the snowy peaks, you and your adventuring party have unknowingly wandered into the domain of a powerful ice dragon... and it is angry!";
-            document.getElementById("left").innerHTML = "Try to hide";
-            document.getElementById("right").innerHTML = "Fight the dragon";
-            document.getElementById("prompt").innerHTML = "WHAT WILL YOU DO?";
-            firstChoice = ""
-            question = 0;
-        }
-        else if (choice == 2){
-            document.getElementById("narration").innerHTML = "Thank you for playing. Have a great day and watch out for wild dragons!";
-            document.getElementById("left").innerHTML = "";
-            document.getElementById("right").innerHTML = "";
-            document.getElementById("prompt").innerHTML = "";
-            firstChoice = ""
-        } 
+function update(CASE){
+    document.getElementById("choice").value = "";
+    switch (CASE){
+        case 0 :
+            document.body.style.backgroundColor = "rgb(30, 15, 0)";
+            document.getElementById("header").src = "media/vendor.jpg";
+            document.getElementById("narration").innerHTML = "You are approached by a charming but shifty goblin in an alley way. He offers you one of his potions for just 2 gold pieces. The catch? He doesn't know what they do. But he can assure you they won't bring you any harm.";
+            document.getElementById("prompt").innerHTML = "Will you choose the RED, GREEN, SILVER, YELLOW, or PURPLE potion?";
+            document.getElementById("confirm").style.backgroundColor = "rgb(0, 4, 53)";
+            document.getElementById("confirm").innerHTML = "CONFIRM";
+            document.getElementById("choice").placeholder = "Enter potion color";
+            break;
+        case 1 :
+            document.body.style.backgroundColor = "rgb(42, 1, 14)";
+            document.getElementById("header").src = "media/chicken.png";
+            document.getElementById("narration").innerHTML = "You take the red potion and you can BOK BOK almost feel like you're growing feathers, and BOK BOK your postures changing and is that a.... a bea- BOK BOK....... You've been turned into a chicken. ";
+            document.getElementById("prompt").innerHTML = "Would you like to play again? YES or NO?";
+            document.getElementById("confirm").style.backgroundColor = "rgb(53, 0, 0)";
+            document.getElementById("confirm").innerHTML = "RESTART";
+            document.getElementById("choice").placeholder = "Answer";
+            break;
+        case 2 :
+            document.body.style.backgroundColor = "rgb(0, 30, 5)";
+            document.getElementById("header").src = "media/poison.png";
+            document.getElementById("narration").innerHTML = "You gulp down the green potion and.... yike sthat did not taste good. Wait is it just you or is everything spinning a lot? Oh you don't look so good. OHHHHHH yeah that green one was totally poison.";
+            document.getElementById("prompt").innerHTML = "Would you like to play again? YES or NO?";
+            document.getElementById("confirm").style.backgroundColor = "rgb(53, 0, 0)";
+            document.getElementById("confirm").innerHTML = "RESTART";
+            document.getElementById("choice").placeholder = "Answer";
+            break;
+        case 3 :
+            document.body.style.backgroundColor = "rgb(29, 32, 34)";
+            document.getElementById("header").src = "media/fly.jpg";
+            document.getElementById("narration").innerHTML = "The silver potion goes down smooth. That silver one gives quite the pep in ones step. In fact you feel more light footed than ever before. So light footed in almost feels like you could just...fly. OMG you're flying!";
+            document.getElementById("prompt").innerHTML = "Would you like to play again? YES or NO?";
+            document.getElementById("confirm").style.backgroundColor = "rgb(53, 0, 0)";
+            document.getElementById("confirm").innerHTML = "RESTART";
+            document.getElementById("choice").placeholder = "Answer";
+            break;
+        case 4 :
+            document.body.style.backgroundColor = "rgb(43, 42, 3)";
+            document.getElementById("header").src = "media/shrunk.png";
+            document.getElementById("narration").innerHTML = "The yellow potion tastes very bizarre. It kind of makes your tummy upset, your head spins a little bit, and it seems like everything around you gets bigger, and bigger.... and BIGGER. You're so tiny! Those rats look a lot scarier when you're the same size.";
+            document.getElementById("prompt").innerHTML = "Would you like to play again? YES or NO?";
+            document.getElementById("confirm").style.backgroundColor = "rgb(53, 0, 0)";
+            document.getElementById("confirm").innerHTML = "RESTART";
+            document.getElementById("choice").placeholder = "Answer";
+            break;
+        case 5 :
+            document.body.style.backgroundColor = "rgb(19, 0, 30)";
+            document.getElementById("header").src = "media/Invisible.jpg";
+            document.getElementById("narration").innerHTML = "The mysterious purple potion flows down your gullot...and nothing happens. hm? Well guess you should just go about your day now. What time is it? Wait where's your hand? Where are your feet? Where's YOU? You're invisible!";
+            document.getElementById("prompt").innerHTML = "Would you like to play again? YES or NO?";
+            document.getElementById("confirm").style.backgroundColor = "rgb(53, 0, 0)";
+            document.getElementById("confirm").innerHTML = "RESTART";
+            document.getElementById("choice").placeholder = "Answer";
+            break;
+        case 6 :
+            document.getElementById("prompt").innerHTML = "Thank you for playing. Have a great day!";
+            document.getElementById("choice").placeholder = "";
+            break;
+        case 7 :
+            document.getElementById("prompt").innerHTML = document.getElementById("prompt").innerHTML + " (Please enter a valid answer, signified by all-caps)"
     }
 }

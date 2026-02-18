@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,5 +22,390 @@
   </div>
 
   <script src="script.js"></script>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Interactive Story</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #eef6f9;
+    margin: 20px;
+    color: #333;
+  }
+  #story {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+  }
+  #image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  #input-area {
+    margin-bottom: 20px;
+  }
+  #user-input {
+    padding: 8px;
+    font-size: 1em;
+    width: 250px;
+  }
+  #submit-btn {
+    padding: 8px 15px;
+    font-size: 1em;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  #restart-btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+  }
+  #restart-btn:hover {
+    background-color: #218838;
+  }
+</style>
+</head>
+<body>
+
+<div id="story">
+  You are driving down a dirt road heading nowhere in particular. You come to a T in the road. Which way do you go? Left or Right?
+</div>
+
+<div id="image-container">
+  <img id="story-image" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Dirt road T junction" />
+</div>
+
+<div id="input-area">
+  <input type="text" id="user-input" placeholder="Type your choice here" autocomplete="off" />
+  <button id="submit-btn">Submit</button>
+</div>
+
+<button id="restart-btn">Restart Story</button>
+
+<script>
+  // Story state to track progress
+  let step = 0;
+
+  // Cache DOM elements
+  const storyDiv = document.getElementById('story');
+  const image = document.getElementById('story-image');
+  const userInput = document.getElementById('user-input');
+  const submitBtn = document.getElementById('submit-btn');
+  const restartBtn = document.getElementById('restart-btn');
+
+  // Function to update story text and image
+  function updateStory(text, imgUrl, bgColor) {
+    storyDiv.textContent = text;
+    image.src = imgUrl;
+    if (bgColor) {
+      document.body.style.backgroundColor = bgColor;
+    }
+  }
+
+  // Function to get user input and normalize it
+  function getUserChoice() {
+    return userInput.value.trim().toLowerCase();
+  }
+
+  // Function to handle each step of the story
+  function handleChoice(choice) {
+    switch(step) {
+      case 0:
+        if (choice === 'left') {
+          updateStory(
+            "You go left and find a quaint restaurant where you decide to stop and eat. You get some chicken fried steak. After eating, you see a path leading into the forest or a road continuing forward. Which do you choose? Forest or Road?",
+            "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
+            "#fff5e6"
+          );
+          step++;
+        } else if (choice === 'right') {
+          updateStory(
+            "You go right and drive for hours and hours and run out of fuel. You are lost and not sure what to do next. Do you walk to a nearby town or wait for help? Walk or Wait?",
+            "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80",
+            "#fbe9e7"
+          );
+          step = 10; // Different branch
+        } else {
+          alert("Please type 'Left' or 'Right'.");
+        }
+        break;
+
+      case 1:
+        if (choice === 'forest') {
+          updateStory(
+            "You enter the forest and hear the sound of a river nearby. Do you follow the sound or climb a tree to get a better view? Follow or Climb?",
+            "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80",
+            "#e6f0ff"
+          );
+          step++;
+        } else if (choice === 'road') {
+          updateStory(
+            "You continue down the road and find an abandoned cabin. Do you enter or keep driving? Enter or Drive?",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#fff0f5"
+          );
+          step = 20; // Another branch
+        } else {
+          alert("Please type 'Forest' or 'Road'.");
+        }
+        break;
+
+      case 2:
+        if (choice === 'follow') {
+          updateStory(
+            "You follow the river and find a boat. Do you take the boat downstream or rest by the riverbank? Boat or Rest?",
+            "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=800&q=80",
+            "#d0f0fd"
+          );
+          step++;
+        } else if (choice === 'climb') {
+          updateStory(
+            "You climb a tree and see a village in the distance. Do you head towards the village or stay in the forest? Village or Stay?",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#e6ffe6"
+          );
+          step = 30; // Another branch
+        } else {
+          alert("Please type 'Follow' or 'Climb'.");
+        }
+        break;
+
+      case 3:
+        if (choice === 'boat') {
+          updateStory(
+            "You take the boat downstream and discover a hidden waterfall with a cave behind it. Do you explore the cave or return? Explore or Return?",
+            "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=800&q=80",
+            "#cce7ff"
+          );
+          step++;
+        } else if (choice === 'rest') {
+          updateStory(
+            "You rest by the riverbank and enjoy the peaceful surroundings. Suddenly, you see a mysterious figure approaching. Do you greet or hide? Greet or Hide?",
+            "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=800&q=80",
+            "#fffde7"
+          );
+          step = 40; // Another branch
+        } else {
+          alert("Please type 'Boat' or 'Rest'.");
+        }
+        break;
+
+      // Branch 10: Right path choices
+      case 10:
+        if (choice === 'walk') {
+          updateStory(
+            "You decide to walk and after a long trek, you find a friendly farmer who offers you food and shelter. Do you stay or continue walking? Stay or Continue?",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#f0fff0"
+          );
+          step = 11;
+        } else if (choice === 'wait') {
+          updateStory(
+            "You wait by the car and after some hours, a passing truck sees you and offers a ride. Do you accept or refuse? Accept or Refuse?",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#fff0f0"
+          );
+          step = 12;
+        } else {
+          alert("Please type 'Walk' or 'Wait'.");
+        }
+        break;
+
+      case 11:
+        if (choice === 'stay') {
+          updateStory(
+            "You stay with the farmer and live a peaceful life in the countryside. The end.",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#e6ffe6"
+          );
+          endStory();
+        } else if (choice === 'continue') {
+          updateStory(
+            "You continue walking and eventually find your way back to the main road. You are safe. The end.",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#e6f0ff"
+          );
+          endStory();
+        } else {
+          alert("Please type 'Stay' or 'Continue'.");
+        }
+        break;
+
+      case 12:
+        if (choice === 'accept') {
+          updateStory(
+            "You accept the ride and the driver takes you to the nearest town. You are saved. The end.",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#d0f0fd"
+          );
+          endStory();
+        } else if (choice === 'refuse') {
+          updateStory(
+            "You refuse the ride and are left waiting alone. Night falls and you feel uneasy. The end.",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#fbe9e7"
+          );
+          endStory();
+        } else {
+          alert("Please type 'Accept' or 'Refuse'.");
+        }
+        break;
+
+      // Branch 20: Road choices after restaurant
+      case 20:
+        if (choice === 'enter') {
+          updateStory(
+            "You enter the cabin and find a map on the table. Do you take the map or leave it? Take or Leave?",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#fffaf0"
+          );
+          step = 21;
+        } else if (choice === 'drive') {
+          updateStory(
+            "You keep driving and eventually find a gas station. You refuel and continue your journey safely. The end.",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#e6f0ff"
+          );
+          endStory();
+        } else {
+          alert("Please type 'Enter' or 'Drive'.");
+        }
+        break;
+
+      case 21:
+        if (choice === 'take') {
+          updateStory(
+            "You take the map and use it to navigate safely out of the woods. You win! The end.",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#d0f0fd"
+          );
+          endStory();
+        } else if (choice === 'leave') {
+          updateStory(
+            "You leave the map and get lost deeper in the woods. The end.",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#fbe9e7"
+          );
+          endStory();
+        } else {
+          alert("Please type 'Take' or 'Leave'.");
+        }
+        break;
+
+      // Branch 30: Village or stay in forest
+      case 30:
+        if (choice === 'village') {
+          updateStory(
+            "You head towards the village and find friendly locals who help you. The end.",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#e6ffe6"
+          );
+          endStory();
+        } else if (choice === 'stay') {
+          updateStory(
+            "You decide to stay in the forest and live off the land. The end.",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#d0f0fd"
+          );
+          endStory();
+        } else {
+          alert("Please type 'Village' or 'Stay'.");
+        }
+        break;
+
+      // Branch 40: Greet or Hide
+      case 40:
+        if (choice === 'greet') {
+          updateStory(
+            "The figure is a friendly traveler who shares stories with you. The end.",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#fffde7"
+          );
+          endStory();
+        } else if (choice === 'hide') {
+          updateStory(
+            "You hide quietly until the figure passes. You feel safe and continue your journey. The end.",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "#f0f0f0"
+          );
+          endStory();
+        } else {
+          alert("Please type 'Greet' or 'Hide'.");
+        }
+        break;
+
+      default:
+        alert("Unexpected step. Restarting story.");
+        restartStory();
+    }
+  }
+
+  // Function to end story and show restart button
+  function endStory() {
+    userInput.disabled = true;
+    submitBtn.disabled = true;
+    restartBtn.style.display = 'inline-block';
+  }
+
+  // Restart story function
+  function restartStory() {
+    step = 0;
+    updateStory(
+      "You are driving down a dirt road heading nowhere in particular. You come to a T in the road. Which way do you go? Left or Right?",
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+      "#eef6f9"
+    );
+    userInput.value = '';
+    userInput.disabled = false;
+    submitBtn.disabled = false;
+    restartBtn.style.display = 'none';
+  }
+
+  // Loop to validate input before processing (example of a do-while loop)
+  function processInput() {
+    let choice;
+    do {
+      choice = getUserChoice();
+      if (choice === '') {
+        alert('Please enter a choice.');
+        return; // Exit if empty input
+      }
+      // We accept any non-empty input here; invalid inputs are handled in handleChoice
+      break;
+    } while (true);
+
+    handleChoice(choice);
+    userInput.value = '';
+    userInput.focus();
+  }
+
+  // Event listeners
+  submitBtn.addEventListener('click', processInput);
+
+  userInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      processInput();
+    }
+  });
+
+  restartBtn.addEventListener('click', restartStory);
+
+  // Initialize story on page load
+  restartStory();
+</script>
+
 </body>
 </html>

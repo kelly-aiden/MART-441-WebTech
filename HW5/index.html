@@ -9,23 +9,23 @@
     <script src="script.js"></script>
   </head>
   <body>
-    <img src="media/dragon.jpg">
-    <h1>THE MIGHTY ICE DRAGON</h1>
+    <img id="header" src="media/vendor.jpg">
+    <h1>THE TRAVELLING POTION VENDOR</h1>
     <br>
-    <div id = "narration">
-        On your travels through the snowy peaks, you and your adventuring party have unknowingly wandered into the domain of a powerful ice dragon... and it is angry!
+    <div id="narration">
+        You are approached by a charming but shifty goblin in an alley way. He offers you one of his potions for just 2 gold pieces. The catch? He doesn't know what they do. But he can assure you they won't bring you any harm.
     </div> 
     <br>
-    <div id = "prompt">
-        WHAT WILL YOU DO?
-    </div>
-    <br>
-
-    <div id="buttons">
-        <button id="left" onclick="choose(1);">Try to hide</button>
-        <button id="right" onclick="choose(2);">Fight the Dragon</button>
+    <div id="prompt">
+        Will you choose the RED, GREEN, SILVER, YELLOW, or PURPLE potion? 
     </div>
 
     <br>
+    <br>
+
+    <input type="text" size="30" id="choice" placeholder="Enter potion color">
+    <br>
+  
+    <button id="confirm" onclick="update(getCase())">CONFIRM</button>
  </body>
 </html>
