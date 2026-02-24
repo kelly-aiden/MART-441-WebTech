@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Memory Matching Game</title>
+<style>
+  #game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 10px;
+  }
+  .tile {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div id="game-board"></div>
+
+<script>
+  // Step 1: Blank image and actual images (6 pairs)
+  const blankImage = 'blank.png'; // URL or path to blank image
+  const actualImages = [
+    'img1.png', 'img2.png', 'img3.png',
+    'img4.png', 'img5.png', 'img6.png'
+  ];
+
+  // Step 2: Create an array with pairs (each image twice)
+  let actualImagesPairs = [];
+  actualImages.forEach(img => {
+    actualImagesPairs.push(img, img);
+  });
+
+  // Shuffle function using Fisher-Yates algorithm
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  shuffle(actualImagesPairs);
+
+  // Step 3: Create blank images array (all blank)
+  const blankImagesArray = new Array(12).fill(blankImage);
+
+  // Display the blank images in a grid
+  const gameBoard = document.getElementById('game-board');
+
+  for (let i = 0; i < 12; i++) {
+    const tile = document.createElement('img');
+    tile.src = blankImagesArray[i];
+    tile.classList.add('tile');
+    tile.dataset.index = i;  // store index for reference
+
+    // Add click event to reveal actual image
+    tile.addEventListener('click', () => {
+      tile.src = actualImagesPairs[i];
+      // Additional logic for matching will come later
+    });
+
+    gameBoard.appendChild(tile);
+  }
+</script>
+
+</body>
+</html>
