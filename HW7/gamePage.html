@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Aiden Kelly Homework 7</title>
+    <meta name="author" content="Aiden Kelly">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href = "style.css">
+  </head>
+  <body>
+    <h1>Card Matching Game</h1>
+    <h2 id="counter">Attempts: 0</h2>
+    <div class="container">
+        <div class="row">
+            <img id = "0" src = "media/back.png" onclick = "flip(0);"/>
+            <img id = "1" src = "media/back.png" onclick = "flip(1);"/>
+            <img id = "2" src = "media/back.png" onclick = "flip(2);"/>
+            <img id = "3" src = "media/back.png" onclick = "flip(3);"/>
+        </div>
+        <div class="row">
+            <img id = "4" src = "media/back.png" onclick = "flip(4);"/>
+            <img id = "5" src = "media/back.png" onclick = "flip(5);"/>
+            <img id = "6" src = "media/back.png" onclick = "flip(6);"/>
+            <img id = "7" src = "media/back.png" onclick = "flip(7);"/>
+        </div>
+        <div class="row">
+            <img id = "8" src = "media/back.png" onclick = "flip(8);"/>
+            <img id = "9" src = "media/back.png" onclick = "flip(9);"/>
+            <img id = "10" src = "media/back.png" onclick = "flip(10);"/>
+            <img id = "11" src = "media/back.png" onclick = "flip(11);"/>
+        </div>
+    </div>
+    <br>
+    <button id="exit" style="display:none" onclick="goToResults()">See result</button>
+    <script src = "scripts/gameScript.js"></script>
+  </body>
+</html>

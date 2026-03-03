@@ -2,33 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Aiden Kelly Homework 6</title>
+    <title>Aiden Kelly Homework 7</title>
     <meta name="author" content="Aiden Kelly">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href = "style.css">
   </head>
   <body>
-    <h1>Card Matching Game</h1>
-  <div class="container">
-    <div class="row">
-        <img id = "0" src = "media/back.png" onclick = "flip(0);"/>
-        <img id = "1" src = "media/back.png" onclick = "flip(1);"/>
-        <img id = "2" src = "media/back.png" onclick = "flip(2);"/>
-        <img id = "3" src = "media/back.png" onclick = "flip(3);"/>
-    </div>
-    <div class="row">
-        <img id = "4" src = "media/back.png" onclick = "flip(4);"/>
-        <img id = "5" src = "media/back.png" onclick = "flip(5);"/>
-        <img id = "6" src = "media/back.png" onclick = "flip(6);"/>
-        <img id = "7" src = "media/back.png" onclick = "flip(7);"/>
-    </div>
-    <div class="row">
-        <img id = "8" src = "media/back.png" onclick = "flip(8);"/>
-        <img id = "9" src = "media/back.png" onclick = "flip(9);"/>
-        <img id = "10" src = "media/back.png" onclick = "flip(10);"/>
-        <img id = "11" src = "media/back.png" onclick = "flip(11);"/>
-    </div>
-  </div>
-  <script src = "script.js"></script>
+    <h1>Welcome!</h1>
+    <h2 id="instructions">please fill out the boxes below</h2>
+    <input type="text" size="30" id="firstName" placeholder="First Name">
+    <br>
+    <br>
+    <input type="text" size="30" id="lastName" placeholder="Last Name">
+    <br>
+    <br>
+    <input type="text" size="30" id="age" placeholder="Age">
+    <br>
+    <br>
+    <button id="submit" onclick="getInfo();">Start Game</button>
+    <script src = "scripts/introScript.js"></script>
   </body>
 </html>

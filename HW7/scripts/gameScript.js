@@ -1,4 +1,5 @@
 var clickCounter = 0;
+var attempts = 0;
 
 var activeDeck = new Array(12).fill("media/back.png");
 var imageDeck = ["media/ace.jpg","media/five.png","media/ten.jpg","media/king.png","media/queen.jpg","media/jack.png","media/ace.jpg","media/five.png","media/ten.jpg","media/king.png","media/queen.jpg","media/jack.png"];
@@ -25,10 +26,12 @@ function flip(index){
         createGrid();
     }
     if (clickCounter == 2){
+        attempts += 1;
         setCard(index);
         createGrid();
         checkPairs();
         clickCounter = 0;
+        checkWin(attempts);
     }
 }
 
@@ -52,6 +55,7 @@ function createGrid(){
             document.getElementById(i).src = shuffledDeck[i];
         }
     }
+    document.getElementById("counter").innerHTML = "Attempts " + attempts;
 }
 
 function clearSolos(){
@@ -73,4 +77,24 @@ function checkPairs(){
             }
         }
     }
+}
+
+function checkWin(finalCount){
+    let correct = 0;
+    for (let i = 0; i < 12; i++){
+        if (activeDeck[i] == "paired"){
+            correct += 1;
+        }
+    }
+    if (correct == 12){
+        let obj = JSON.parse(localStorage.getItem("userInfo"));
+        obj.attempts = finalCount;
+        localStorage.setItem("userInfo", JSON.stringify(obj));
+
+        document.getElementById("exit").style.display = "inline-block";
+    }
+}
+
+function goToResults(){
+    window.location = "results.html";
 }
