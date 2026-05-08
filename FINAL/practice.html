@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phaser Level Manager</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #222;
+        }
+        #game-container {
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container"></div>
+
+    <!-- Global variables -->
+    <script>
+        let level = 1; // Start at level 1
+        let game; // Global game instance
+        let timer = {
+            timeLeft: 120, // 2 minutes in seconds
+            timerText: null,
+            timerEvent: null,
+            addTime: function(seconds) {
+                this.timeLeft += seconds;
+                this.timerText.setText(`Time: ${this.timeLeft}`);
+            },
+            start: function(scene) {
+                this.timerEvent = scene.time.addEvent({
+                    delay: 1000,
+                    callback: () => {
+                        this.timeLeft--;
+                        this.timerText.setText(`Time: ${this.timeLeft}`);
+                        if (this.timeLeft <= 0) {
+                            this.gameOver(scene);
+                        }
+                    },
+                    loop: true
+                });
+            },
+            pause: function() {
+                this.timerEvent.paused = true;
+            },
+            resume: function() {
+                this.timerEvent.paused = false;
+            },
+            gameOver: function(scene) {
+                scene.scene.start('gameOver');
+            }
+        };
+    </script>
+
+    <!-- Load Phaser and game.js -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    <script src="game.js"></script>
+
+    <!-- Dynamically load the level script -->
+    <script>
+        function loadLevelScript() {
+            const script = document.createElement('script');
+            script.src = `levels/level-${level}.js`;
+            script.onload = () => {
+                console.log(`Loaded level ${level}`);
+            };
+            document.body.appendChild(script);
+        }
+
+        // Load the initial level
+        loadLevelScript();
+    </script>
+</body>
+</html>
