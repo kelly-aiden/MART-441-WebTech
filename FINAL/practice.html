@@ -1,80 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Phaser Level Manager</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbow Star Collector</title>
     <style>
         body {
             margin: 0;
-            padding: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #013a22;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #222;
+            text-align: center;
         }
         #game-container {
-            width: 800px;
+            width: 1300px;
             height: 600px;
+            background-color: #fff;
+            border: 2px solid #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #ffffff;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
 </head>
 <body>
+    <h1>COLLECT THE RAINBOW STAR</h1>
     <div id="game-container"></div>
 
-    <!-- Global variables -->
+    <!-- Global variables that get tracked between levels-->
     <script>
-        let level = 1; // Start at level 1
-        let game; // Global game instance
-        let timer = {
-            timeLeft: 120, // 2 minutes in seconds
-            timerText: null,
-            timerEvent: null,
-            addTime: function(seconds) {
-                this.timeLeft += seconds;
-                this.timerText.setText(`Time: ${this.timeLeft}`);
-            },
-            start: function(scene) {
-                this.timerEvent = scene.time.addEvent({
-                    delay: 1000,
-                    callback: () => {
-                        this.timeLeft--;
-                        this.timerText.setText(`Time: ${this.timeLeft}`);
-                        if (this.timeLeft <= 0) {
-                            this.gameOver(scene);
-                        }
-                    },
-                    loop: true
-                });
-            },
-            pause: function() {
-                this.timerEvent.paused = true;
-            },
-            resume: function() {
-                this.timerEvent.paused = false;
-            },
-            gameOver: function(scene) {
-                scene.scene.start('gameOver');
-            }
-        };
+        var timer = 600; 
+        var coinTotal = 0;
     </script>
-
-    <!-- Load Phaser and game.js -->
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
-    <script src="game.js"></script>
-
-    <!-- Dynamically load the level script -->
-    <script>
-        function loadLevelScript() {
-            const script = document.createElement('script');
-            script.src = `levels/level-${level}.js`;
-            script.onload = () => {
-                console.log(`Loaded level ${level}`);
-            };
-            document.body.appendChild(script);
-        }
-
-        // Load the initial level
-        loadLevelScript();
-    </script>
+    <script src="level-3.js"></script> 
 </body>
 </html>
