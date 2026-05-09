@@ -121,7 +121,7 @@ function create ()
 
     //Add bombs to the game
     bombs = this.physics.add.group();
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
         var x = Phaser.Math.Between(300, 1000);
         var bomb = bombs.create(x, 16, 'bomb');
         bomb.setBounce(1);
