@@ -50,30 +50,24 @@ function create ()
     platforms = this.physics.add.staticGroup();
 
     //  Here we create the ground.
-    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    platforms.create(300, 568, 'ground').setScale(2,2).refreshBody();
-    platforms.create(1000, 568, 'ground').setScale(0.2,2).refreshBody();
-    platforms.create(1325, 568, 'ground').setScale(0.4,2).refreshBody();
-
+    platforms.create(500, 575, 'ground').setScale(4,2.5).refreshBody();
 
     //  Now let's create some ledges
-    platforms.create(350, 450, 'ground').setScale(1.5, 0.8).refreshBody();
-    platforms.create(100, 350, 'ground').setScale(0.2, 0.8).refreshBody();
-    platforms.create(600, 300, 'ground').setScale(1.65, 0.8).refreshBody();
-    platforms.create(625, 190, 'ground').setScale(1.2, 0.8).refreshBody();
-    //platforms.create(625, 190, 'ground').setScale(4, 0.8).refreshBody();
-
-    platforms.create(1165, 190, 'ground').setScale(0.05, 0.5).refreshBody();
-    platforms.create(1050, 250, 'ground').setScale(0.05, 0.5).refreshBody();
+    platforms.create(300, 450, 'ground').setScale(1.5, 0.8).refreshBody();
+    platforms.create(900, 350, 'ground').setScale(0.7, 0.8).refreshBody();
+    platforms.create(1275, 350, 'ground').setScale(0.2, 0.8).refreshBody();
+    platforms.create(400, 250, 'ground').setScale(1, 0.8).refreshBody();
+    platforms.create(50, 150, 'ground').setScale(0.3, 0.8).refreshBody();
 
     //spikes
     hazards = this.physics.add.staticGroup();
-    hazards.create(825, 590, 'spike').setScale(0.35,0.3).refreshBody();
-    hazards.create(1140, 590, 'spike').setScale(0.28,0.3).refreshBody();
+    hazards.create(1000, 525, 'spike').setScale(0.2,0.25).refreshBody();
+    hazards.create(150, 425, 'spike').setScale(0.2,0.25).refreshBody();
+    hazards.create(350, 225, 'spike').setScale(0.2,0.25).refreshBody();
 
 
      // The player and its settings
-    player = this.physics.add.sprite(100, 450, 'dude');
+    player = this.physics.add.sprite(100, 500, 'dude');
     player.setScale(2);
 
     //  Player physics properties
@@ -112,11 +106,11 @@ function create ()
 
     // Add coins to the game 
     coins = this.physics.add.group();
-    coins.create(100, 100, 'coin').setScale(0.03);
-    coins.create(200, 200, 'coin').setScale(0.03);
+    coins.create(25, 400, 'coin').setScale(0.03);
+    coins.create(1275, 300, 'coin').setScale(0.03);
 
     //Add a star to the game
-    star = this.physics.add.sprite(200, 450, 'star');
+    star = this.physics.add.sprite(25, 100, 'star');
     star.setScale(0.08);
 
     //Add bombs to the game
