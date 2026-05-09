@@ -21,24 +21,28 @@
             height: 600px;
             background-color: #fff;
             border: 2px solid #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         h1 {
-            color: #ffffff;
+            color: #d1f3fb;
+            font-size: 300%;
+            text-shadow: 0 0 10px #00d9ff;
+        }
+        h2 {
+            color: #edf7f9; 
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
 </head>
 <body>
     <h1>COLLECT THE RAINBOW STAR</h1>
+    <h2>Avoid spikes and bombs, collect coins, and beat the clock!</h2>
     <div id="game-container"></div>
 
     <!-- Global variables that get tracked between levels-->
     <script>
-        //var timer = 30;
-        var timer = 600; 
+        var timer = 30;
         var coinTotal = 0;
     </script>
-    <script src="level-2.js"></script> 
+    <script src="level-1.js"></script> 
 </body>
 </html>

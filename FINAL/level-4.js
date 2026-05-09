@@ -51,29 +51,33 @@ function create ()
 
     //  Here we create the ground.
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    platforms.create(300, 568, 'ground').setScale(2,2).refreshBody();
-    platforms.create(1000, 568, 'ground').setScale(0.2,2).refreshBody();
-    platforms.create(1325, 568, 'ground').setScale(0.4,2).refreshBody();
+    platforms.create(50, 150, 'ground').setScale(0.5,1).refreshBody();
+    for (let i = 0; i < 5; i++) {
+        var x = ((i + 1) * 260) - 10;
+        var y = Phaser.Math.Between(150, 250);
+        var platform = platforms.create(x, y, 'ground').setScale(0.02, 0.5).refreshBody();
+    }
+    for (let i = 0; i < 4; i++) {
+        var x = ((i + 0.5) * 325);
+        var y = Phaser.Math.Between(400, 480);
+        var platform = platforms.create(x, y, 'ground').setScale(0.05, 0.5).refreshBody();
+    }
+    platforms.create(25, 480, 'ground').setScale(0.2, 0.5).refreshBody();
+    platforms.create(1250, 550, 'ground').setScale(0.3,1).refreshBody();
 
-
-    //  Now let's create some ledges
-    platforms.create(350, 450, 'ground').setScale(1.5, 0.8).refreshBody();
-    platforms.create(100, 350, 'ground').setScale(0.2, 0.8).refreshBody();
-    platforms.create(600, 300, 'ground').setScale(1.65, 0.8).refreshBody();
-    platforms.create(625, 190, 'ground').setScale(1.2, 0.8).refreshBody();
-    //platforms.create(625, 190, 'ground').setScale(4, 0.8).refreshBody();
-
-    platforms.create(1165, 190, 'ground').setScale(0.05, 0.5).refreshBody();
-    platforms.create(1050, 250, 'ground').setScale(0.05, 0.5).refreshBody();
 
     //spikes
     hazards = this.physics.add.staticGroup();
-    hazards.create(825, 590, 'spike').setScale(0.35,0.3).refreshBody();
-    hazards.create(1140, 590, 'spike').setScale(0.28,0.3).refreshBody();
+    hazards.create(110, 590, 'spike').setScale(0.3,0.3).refreshBody();
+    hazards.create(335, 590, 'spike').setScale(0.3,0.3).refreshBody();
+    hazards.create(560, 590, 'spike').setScale(0.3,0.3).refreshBody();
+    hazards.create(785, 590, 'spike').setScale(0.3,0.3).refreshBody();
+    hazards.create(1010, 590, 'spike').setScale(0.3,0.3).refreshBody();
+    hazards.create(1235, 590, 'spike').setScale(0.3,0.3).refreshBody();
 
 
      // The player and its settings
-    player = this.physics.add.sprite(100, 450, 'dude');
+    player = this.physics.add.sprite(50, 100, 'dude');
     player.setScale(2);
 
     //  Player physics properties
@@ -112,18 +116,25 @@ function create ()
 
     // Add coins to the game 
     coins = this.physics.add.group();
-    coins.create(100, 100, 'coin').setScale(0.03);
-    coins.create(200, 200, 'coin').setScale(0.03);
+    coins.create(1275, 100, 'coin').setScale(0.03);
+    coins.create(25, 400, 'coin').setScale(0.03);
+
+
 
     //Add a star to the game
-    star = this.physics.add.sprite(200, 450, 'star');
+    star = this.physics.add.sprite(1275, 500, 'star');
     star.setScale(0.08);
 
     //Add bombs to the game
     bombs = this.physics.add.group();
+    var bomb = bombs.create(800, 16, 'bomb');
+    bomb.setBounce(1);
+    bomb.setCollideWorldBounds(true);
+    bomb.setVelocity(Phaser.Math.Between(-250, 250), 20);
+    bomb.allowGravity = false;
 
     //  The text at the top of the screen
-    coinText = this.add.text(1075, 16, 'GOLD:' + coinTotal, { fontSize: '50px', fill: '#000', fontStyle: 'bold', stroke: '#ffd500', strokeThickness: 4 });
+    coinText = this.add.text(1050, 16, 'GOLD:' + coinTotal + '/9', { fontSize: '50px', fill: '#000', fontStyle: 'bold', stroke: '#ffd500', strokeThickness: 4 });
     levelText = this.add.text(600, 16, '4/4', { fontSize: '50px', fill: '#000', fontStyle: 'bold', stroke: '#e1f1f5', strokeThickness: 4});
     timerText = this.add.text(10, 10, 'Time:' + timer, { fontSize: '50px', fill: '#000000', fontStyle: 'bold', stroke: '#f25757', strokeThickness: 4 });
     // Timer countdown - the timer logic with the this.time.addEvent, loop, and callback is all courtesy of Ecosia AI. I understand how it works but did not know about it before asking Ecosia AI
@@ -151,7 +162,7 @@ function create ()
                     gameOverScreen.style.justifyContent = 'center';
                     gameOverScreen.style.alignItems = 'center';
                     gameOverScreen.style.backgroundColor = 'black';
-                    gameOverScreen.innerHTML = '<p style="color: red; font-size: 72px; font-weight: bold;">GAME OVER</p>';
+                    gameOverScreen.innerHTML = '<p style="color: red; font-size: 150px; font-weight: bold;">GAME OVER</p>';
                 }, 3000);
             }
         },
@@ -229,7 +240,7 @@ function collectCoin (player, coin)
 
     //  Add and update the score
     coinTotal += 1;
-    coinText.setText('GOLD:' + coinTotal);
+    coinText.setText('GOLD:' + coinTotal + '/9');
 }
 
 //Once the rainbow star is collected, the level ends and is destroyed and the next level is loaded
@@ -239,7 +250,12 @@ function collectStar (player, star)
     
     this.physics.pause();
 
-    player.setTint(0x00FFFF);
+    if (coinTotal == 9){
+        player.setTint(0xe600ff);
+    }
+    else {
+        player.setTint(0x00ff0d);
+    }
 
     player.anims.play('air');
 
@@ -255,7 +271,12 @@ function collectStar (player, star)
         gameOverScreen.style.justifyContent = 'center';
         gameOverScreen.style.alignItems = 'center';
         gameOverScreen.style.backgroundColor = 'black';
-        gameOverScreen.innerHTML = '<p style="color: cyan; font-size: 72px; font-weight: bold;">YOU WIN!</p>';
+        if (coinTotal == 9){
+            gameOverScreen.innerHTML = '<p style="color: #ffd500; font-size: 150px; font-weight: bold;">YOU GOT A PERFECT RUN!</p>';
+        }
+        else {
+            gameOverScreen.innerHTML = '<p style="color: cyan; font-size: 150px; font-weight: bold;">YOU WIN</p>';
+        }
         }, 4000);
 }
 
@@ -280,6 +301,6 @@ function hitHazard (player, hazard)
         gameOverScreen.style.justifyContent = 'center';
         gameOverScreen.style.alignItems = 'center';
         gameOverScreen.style.backgroundColor = 'black';
-        gameOverScreen.innerHTML = '<p style="color: red; font-size: 72px; font-weight: bold;">GAME OVER</p>';
+        gameOverScreen.innerHTML = '<p style="color: red; font-size: 150px; font-weight: bold;">GAME OVER</p>';
         }, 3000);
 }

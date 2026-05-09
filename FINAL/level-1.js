@@ -117,7 +117,7 @@ function create ()
     bombs = this.physics.add.group();
 
     //  The text at the top of the screen
-    coinText = this.add.text(1075, 16, 'GOLD:' + coinTotal, { fontSize: '50px', fill: '#000', fontStyle: 'bold', stroke: '#ffd500', strokeThickness: 4 });
+    coinText = this.add.text(1050, 16, 'GOLD:' + coinTotal + '/9', { fontSize: '50px', fill: '#000', fontStyle: 'bold', stroke: '#ffd500', strokeThickness: 4 });
     levelText = this.add.text(600, 16, '1/4', { fontSize: '50px', fill: '#000', fontStyle: 'bold', stroke: '#e1f1f5', strokeThickness: 4});
     timerText = this.add.text(10, 10, 'Time:' + timer, { fontSize: '50px', fill: '#000000', fontStyle: 'bold', stroke: '#f25757', strokeThickness: 4 });
     // Timer countdown - the timer logic with the this.time.addEvent, loop, and callback is all courtesy of Ecosia AI. I understand how it works but did not know about it before asking Ecosia AI
@@ -145,7 +145,7 @@ function create ()
                     gameOverScreen.style.justifyContent = 'center';
                     gameOverScreen.style.alignItems = 'center';
                     gameOverScreen.style.backgroundColor = 'black';
-                    gameOverScreen.innerHTML = '<p style="color: red; font-size: 72px; font-weight: bold;">GAME OVER</p>';
+                    gameOverScreen.innerHTML = '<p style="color: red; font-size: 150px; font-weight: bold;">GAME OVER</p>';
                 }, 3000);
             }
         },
@@ -223,14 +223,14 @@ function collectCoin (player, coin)
 
     //  Add and update the score
     coinTotal += 1;
-    coinText.setText('GOLD:' + coinTotal);
+    coinText.setText('GOLD:' + coinTotal + '/9');
 }
 
 //Once the rainbow star is collected, the level ends and is destroyed and the next level is loaded
 function collectStar (player, star)
 {
     star.disableBody(true, true);
-    timer += 60; 
+    timer += 50; 
 
     game.destroy(true);
 
@@ -260,6 +260,6 @@ function hitHazard (player, hazard)
         gameOverScreen.style.justifyContent = 'center';
         gameOverScreen.style.alignItems = 'center';
         gameOverScreen.style.backgroundColor = 'black';
-        gameOverScreen.innerHTML = '<p style="color: red; font-size: 72px; font-weight: bold;">GAME OVER</p>';
+        gameOverScreen.innerHTML = '<p style="color: red; font-size: 150px; font-weight: bold;">GAME OVER</p>';
         }, 3000);
 }
