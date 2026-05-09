@@ -30,12 +30,21 @@
         h2 {
             color: #edf7f9; 
         }
+        button{
+            width: 250px;
+            height: auto;
+            font-size: 250%;
+            border: 10% solid;
+            background-color: rgb(0, 120, 176);
+            border-color: rgb(255, 255, 255);
+            color:rgb(255, 255, 255);
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
 </head>
 <body>
-    <h1>COLLECT THE RAINBOW STAR</h1>
-    <h2>Avoid spikes and bombs, collect coins, and beat the clock!</h2>
+    <h1>REACH THE RAINBOW STAR</h1>
+    <h2>Avoid spikes & bombs, collect coins, & beat the clock!</h2>
     <div id="game-container"></div>
 
     <!-- Global variables that get tracked between levels-->
@@ -44,5 +53,7 @@
         var coinTotal = 0;
     </script>
     <script src="level-1.js"></script> 
+    <br/>
+    <button id="restart" onclick="location.reload();">RESTART</button> 
 </body>
 </html>
